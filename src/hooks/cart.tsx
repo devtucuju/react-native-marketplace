@@ -110,12 +110,14 @@ const CartProvider: React.FC = ({ children }) => {
 
   const remove = useCallback(
     async id => {
-      products.splice(products.indexOf(id), 1);
+      const removedProduct = products.filter(function (i) {
+        return i.id !== id;
+      });
 
-      setProducts(products);
+      setProducts(removedProduct);
       await AsyncStorage.setItem(
         '@GoMarketPlace:products',
-        JSON.stringify(products),
+        JSON.stringify(removedProduct),
       );
       loadProducts();
     },
