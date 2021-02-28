@@ -36,7 +36,7 @@ interface Product {
 }
 
 const Cart: React.FC = () => {
-  const { increment, decrement, products } = useCart();
+  const { increment, decrement, products, remove } = useCart();
 
   function handleIncrement(id: string): void {
     // TODO
@@ -46,6 +46,10 @@ const Cart: React.FC = () => {
   function handleDecrement(id: string): void {
     // TODO
     decrement(id);
+  }
+  function handleRemove(id: string): void {
+    // TODO
+    remove(id);
   }
 
   const cartTotal = useMemo(() => {
@@ -110,6 +114,12 @@ const Cart: React.FC = () => {
                   onPress={() => handleDecrement(item.id)}
                 >
                   <FeatherIcon name="minus" color="#E83F5B" size={16} />
+                </ActionButton>
+                <ActionButton
+                  testID={`remove-${item.id}`}
+                  onPress={() => handleRemove(item.id)}
+                >
+                  <FeatherIcon name="trash" color="#E83F5B" size={16} />
                 </ActionButton>
               </ActionContainer>
             </Product>
